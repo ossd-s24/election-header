@@ -3,7 +3,6 @@ This repository contains code for an installable Web Extension.
 We gladly accept contributions as improvements to the extension. This file lists some general guidelines to help contributors.
 
 ## Types of Contribution
-- - - -
 
 Here are the ways you can help improve this repository;
 
@@ -11,7 +10,6 @@ Here are the ways you can help improve this repository;
 - **fix a bug:** you might find an issue and choose to fix it
 
 ## Guidelines for examples
-- - - -
 
 Examples should:
 
@@ -22,11 +20,9 @@ Examples should:
     - icons
 
 ## Code style
-- - - -
 
 Code style should be consistent with the rest of the code in the file.
 
 ## Licensing
-- - - -
 
 Please note that the code is made available under the GNU General Public License, so any contributions must be compatible with that license.
