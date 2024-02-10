@@ -2,7 +2,7 @@
 const imageSources = [
     'image1.jpg',
     'image2.jpg',
-    'image3.jpg',e
+    'image3.jpg',
 ];
 
 // Container to keep track of images
