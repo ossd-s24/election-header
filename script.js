@@ -1,24 +1,45 @@
 //images
 const imageSources = [
-    'biden.jpg',
-    'binkley.jpg',
-    'haley.jpg',
-    'kennedy.jpg',
-    'phillips.jpg',
-    'stein.jpg',
-    'trump.jpg',
-    'west.jpg',
+    'images/biden.jpg',
+    'images/binkley.jpg',
+    'images/haley.jpg',
+    'images/kennedy.jpg',
+    'images/phillips.jpg',
+    'images/stein.jpg',
+    'images/trump.jpg',
+    'images/west.jpg',
 ];
 
 // Container to keep track of images
 const movingImages = [];
 
+// Animation interval variable to turn on or off
+let animation;
+
+// Toggle button selector
+const toggleButton = document.querySelector(".toggleButton");
+
 document.addEventListener('DOMContentLoaded', () => {
     // Start adding images at random intervals
-    setInterval(() => {
+    animation = setInterval(() => {
         addMovingImage();
     }, 2000); //tbd actual interval
+    toggleButton.innerHTML = "stop";
 });
+
+toggleButton.addEventListener("click", () => {
+    if (animation === null){
+        animation = setInterval(() => {
+            addMovingImage();
+        }, 2000);
+        toggleButton.innerHTML = "stop";
+    }
+    else{
+        clearInterval(animation);
+        animation = null;
+        toggleButton.innerHTML = "start";
+    }
+})
 
 function addMovingImage() {
     const selectedImage = imageSources[Math.floor(Math.random() * imageSources.length)];
