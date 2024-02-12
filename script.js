@@ -1,13 +1,13 @@
 //images
 const imageSources = [
-    'biden.jpg',
-    'binkley.jpg',
-    'haley.jpg',
-    'kennedy.jpg',
-    'phillips.jpg',
-    'stein.jpg',
-    'trump.jpg',
-    'west.jpg',
+    'images/biden.jpg',
+    'images/binkley.jpg',
+    'images/haley.jpg',
+    'images/kennedy.jpg',
+    'images/phillips.jpg',
+    'images/stein.jpg',
+    'images/trump.jpg',
+    'images/west.jpg',
 ];
 
 // Container to keep track of images
