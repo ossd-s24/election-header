@@ -4,7 +4,7 @@
   "version": "1.0",
   "description": "Dynamically displays moving images of presidential candidates across the screen.",
   "icons": {
-    "48": "icons/icon-48.png"
+    "48": "images/AmericanFlag.png"
   },
   "permissions": [
     "activeTab"
@@ -18,12 +18,18 @@
   "browser_action": {
     "default_popup": "my_images.html",
     "default_icon": {
-      "48": "icons/icon-48.png"
+      "48": "images/AmericanFlag.png"
     }
   },
   "web_accessible_resources": [
-    "image1.jpg",
-    "image2.jpg",
-    "image3.jpg"
+    "images/biden.jpg",
+    "images/binkley.jpg",
+    "images/haley.jpg",
+    "images/kennedy.jpg",
+    "images/phillips.jpg",
+    "images/stein.jpg",
+    "images/trump.jpg",
+    "images/west.jpg",
+    "images/AmericanFlag.png"
   ]
 }

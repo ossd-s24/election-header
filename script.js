@@ -1,4 +1,4 @@
-//images
+// Define your image sources
 const imageSources = [
     'images/biden.jpg',
     'images/binkley.jpg',
@@ -10,45 +10,41 @@ const imageSources = [
     'images/west.jpg',
 ];
 
-// Container to keep track of images
 const movingImages = [];
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Start adding images at random intervals
-    setInterval(() => {
-        addMovingImage();
-    }, 2000); //tbd actual interval
-});
+const interval = 2000;
+const speed = 2;
 
 function addMovingImage() {
+    // Randomly select an image to display next
     const selectedImage = imageSources[Math.floor(Math.random() * imageSources.length)];
-    const direction = Math.random() < 0.5 ? -1 : 1; // Randomly choose direction: -1 for left, 1 for right
-
     const img = document.createElement('img');
     img.src = selectedImage;
     img.style.position = 'absolute';
     img.style.bottom = '0px';
-    img.style[direction === -1 ? 'right' : 'left'] = '-100px'; // Start off-screen
+    img.style.left = '-125px'; // Start off-screen to the left
     document.body.appendChild(img);
 
-    movingImages.push({element: img, direction, speed: 2 + Math.random() * 3}); // Random speed
+    // Push the image data to the movingImages array with a constant speed
+    movingImages.push({element: img, speed});
 }
 
 function moveImages() {
-    movingImages.forEach((imgData) => {
-        const currentPosition = parseInt(imgData.element.style[imgData.direction === -1 ? 'right' : 'left'], 10);
-        imgData.element.style[imgData.direction === -1 ? 'right' : 'left'] = `${currentPosition + imgData.speed * imgData.direction}px`;
+    movingImages.forEach((imgData, index) => {
+        const currentPosition = parseInt(imgData.element.style.left, 0);
+        imgData.element.style.left = `${currentPosition + imgData.speed}px`;
 
-        // remove the image if it goes too far off-screen
-        const outOfBounds = imgData.direction === 1 ? currentPosition > window.innerWidth : currentPosition < -200;
-        if (outOfBounds) {
-            imgData.element.remove(); // Remove the image from the DOM
-            const index = movingImages.indexOf(imgData);
-            movingImages.splice(index, 1); // Remove from tracking array
+        // Remove the image if it goes too far off-screen to the right
+        if (currentPosition > window.innerWidth) {
+            imgData.element.remove();
+            movingImages.splice(index, 1);
         }
     });
 
     requestAnimationFrame(moveImages);
 }
 
-moveImages();
+document.addEventListener('DOMContentLoaded', () => {
+    // Start adding images at the same interval
+    setInterval(addMovingImage, interval);
+    moveImages();
+});
