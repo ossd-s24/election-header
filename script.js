@@ -52,8 +52,11 @@ function moveImages() {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Start adding images at the same interval
-    setInterval(addMovingImage, interval);
+    animation = setInterval(addMovingImage, interval);
     moveImages();
+    toggleButton.innerHTML = "stop";
+    toggleButton.classList.remove("off");
+    toggleButton.classList.add("on");
 });
 
 toggleButton.addEventListener("click", () => {
@@ -62,10 +65,14 @@ toggleButton.addEventListener("click", () => {
             addMovingImage();
         }, interval);
         toggleButton.innerHTML = "stop";
+        toggleButton.classList.remove("off");
+        toggleButton.classList.add("on");
     }
     else{
         clearInterval(animation);
         animation = null;
         toggleButton.innerHTML = "start";
+        toggleButton.classList.remove("on");
+        toggleButton.classList.add("off");
     }
 });
