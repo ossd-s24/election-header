@@ -18,12 +18,15 @@ let animation;
 // Toggle button selector
 const toggleButton = document.querySelector(".toggleButton");
 
-const interval = 1000;
+const interval = 2000;
 const speed = 2;
+
+let lastUsedImage;
 
 function addMovingImage() {
     // Randomly select an available image to display next
-    const availableImages = Object.keys(imageSources).filter(key => imageSources[key] === false);
+    let availableImages = Object.keys(imageSources).filter(key => imageSources[key] === false);
+    availableImages = availableImages.filter(img => img !== lastUsedImage);
     const randomIndex = Math.floor(Math.random() * availableImages.length);
     const selectedImage = availableImages[randomIndex];
 
@@ -39,6 +42,8 @@ function addMovingImage() {
 
     // Set image usage status to true.
     imageSources[availableImages[randomIndex]] = true;
+
+    lastUsedImage = availableImages[randomIndex];
 }
 
 function moveImages() {
