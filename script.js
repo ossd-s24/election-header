@@ -1,4 +1,4 @@
-//images
+// Define your image sources
 const imageSources = [
     'images/biden.jpg',
     'images/binkley.jpg',
@@ -10,7 +10,6 @@ const imageSources = [
     'images/west.jpg',
 ];
 
-// Container to keep track of images
 const movingImages = [];
 
 // Animation interval variable to turn on or off
@@ -19,19 +18,49 @@ let animation;
 // Toggle button selector
 const toggleButton = document.querySelector(".toggleButton");
 
+const interval = 2000;
+const speed = 2;
+
+function addMovingImage() {
+    // Randomly select an image to display next
+    const selectedImage = imageSources[Math.floor(Math.random() * imageSources.length)];
+    const img = document.createElement('img');
+    img.src = selectedImage;
+    img.style.position = 'absolute';
+    img.style.bottom = '0px';
+    img.style.left = '-125px'; // Start off-screen to the left
+    document.body.appendChild(img);
+
+    // Push the image data to the movingImages array with a constant speed
+    movingImages.push({element: img, speed});
+}
+
+function moveImages() {
+    movingImages.forEach((imgData, index) => {
+        const currentPosition = parseInt(imgData.element.style.left, 0);
+        imgData.element.style.left = `${currentPosition + imgData.speed}px`;
+
+        // Remove the image if it goes too far off-screen to the right
+        if (currentPosition > window.innerWidth) {
+            imgData.element.remove();
+            movingImages.splice(index, 1);
+        }
+    });
+
+    requestAnimationFrame(moveImages);
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Start adding images at random intervals
-    animation = setInterval(() => {
-        addMovingImage();
-    }, 2000); //tbd actual interval
-    toggleButton.innerHTML = "stop";
+    // Start adding images at the same interval
+    setInterval(addMovingImage, interval);
+    moveImages();
 });
 
 toggleButton.addEventListener("click", () => {
     if (animation === null){
         animation = setInterval(() => {
             addMovingImage();
-        }, 2000);
+        }, interval);
         toggleButton.innerHTML = "stop";
     }
     else{
@@ -39,37 +68,4 @@ toggleButton.addEventListener("click", () => {
         animation = null;
         toggleButton.innerHTML = "start";
     }
-})
-
-function addMovingImage() {
-    const selectedImage = imageSources[Math.floor(Math.random() * imageSources.length)];
-    const direction = Math.random() < 0.5 ? -1 : 1; // Randomly choose direction: -1 for left, 1 for right
-
-    const img = document.createElement('img');
-    img.src = selectedImage;
-    img.style.position = 'absolute';
-    img.style.bottom = '0px';
-    img.style[direction === -1 ? 'right' : 'left'] = '-100px'; // Start off-screen
-    document.body.appendChild(img);
-
-    movingImages.push({element: img, direction, speed: 2 + Math.random() * 3}); // Random speed
-}
-
-function moveImages() {
-    movingImages.forEach((imgData) => {
-        const currentPosition = parseInt(imgData.element.style[imgData.direction === -1 ? 'right' : 'left'], 10);
-        imgData.element.style[imgData.direction === -1 ? 'right' : 'left'] = `${currentPosition + imgData.speed * imgData.direction}px`;
-
-        // remove the image if it goes too far off-screen
-        const outOfBounds = imgData.direction === 1 ? currentPosition > window.innerWidth : currentPosition < -200;
-        if (outOfBounds) {
-            imgData.element.remove(); // Remove the image from the DOM
-            const index = movingImages.indexOf(imgData);
-            movingImages.splice(index, 1); // Remove from tracking array
-        }
-    });
-
-    requestAnimationFrame(moveImages);
-}
-
-moveImages();
+});
