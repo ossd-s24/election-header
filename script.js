@@ -1,14 +1,14 @@
-// Define your image sources
-const imageSources = [
-    'images/biden.jpg',
-    'images/binkley.jpg',
-    'images/haley.jpg',
-    'images/kennedy.jpg',
-    'images/phillips.jpg',
-    'images/stein.jpg',
-    'images/trump.jpg',
-    'images/west.jpg',
-];
+// Define your image sources with its currently used status to avoid repetition.
+const imageSources = {
+    'images/biden.jpg': false,
+    'images/binkley.jpg': false,
+    'images/haley.jpg': false,
+    'images/kennedy.jpg': false,
+    'images/phillips.jpg': false,
+    'images/stein.jpg': false,
+    'images/trump.jpg': false,
+    'images/west.jpg': false,
+};
 
 const movingImages = [];
 
@@ -29,6 +29,7 @@ function addMovingImage() {
     availableImages = availableImages.filter(img => img !== lastUsedImage);
     const randomIndex = Math.floor(Math.random() * availableImages.length);
     const selectedImage = availableImages[randomIndex];
+
     const img = document.createElement('img');
     img.src = selectedImage;
     img.style.position = 'absolute';
@@ -52,6 +53,10 @@ function moveImages() {
 
         // Remove the image if it goes too far off-screen to the right
         if (currentPosition > window.innerWidth) {
+            // Set usage to false to make it available.
+            const image = imgData.element.src;
+            imageSources[image] = false;
+
             imgData.element.remove();
             movingImages.splice(index, 1);
         }
