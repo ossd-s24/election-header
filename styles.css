@@ -44,3 +44,8 @@ body, html {
     height: 100%;
     position: relative;
 }
+
+
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}

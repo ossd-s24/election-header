@@ -18,7 +18,10 @@ let animation;
 // Toggle button selector
 const toggleButton = document.querySelector(".toggleButton");
 
-const interval = 2000;
+// Range interval selector
+const rangeInput = document.getElementById("rangeInput");
+
+let interval = 2000;
 const speed = 2;
 
 let lastUsedImage;
@@ -64,6 +67,18 @@ function moveImages() {
 
     requestAnimationFrame(moveImages);
 }
+
+rangeInput.addEventListener("input", function() {
+    const currentValue = this.value;
+    interval = parseInt(currentValue);
+});
+
+rangeInput.addEventListener("mouseup", function() {
+    clearInterval(animation);
+    animation = setInterval(() => {
+        addMovingImage();
+    }, interval);
+});
 
 document.addEventListener('DOMContentLoaded', () => {
     // Start adding images at the same interval
