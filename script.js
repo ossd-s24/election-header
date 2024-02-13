@@ -11,6 +11,13 @@ const imageSources = [
 ];
 
 const movingImages = [];
+
+// Animation interval variable to turn on or off
+let animation;
+
+// Toggle button selector
+const toggleButton = document.querySelector(".toggleButton");
+
 const interval = 2000;
 const speed = 2;
 
@@ -45,6 +52,27 @@ function moveImages() {
 
 document.addEventListener('DOMContentLoaded', () => {
     // Start adding images at the same interval
-    setInterval(addMovingImage, interval);
+    animation = setInterval(addMovingImage, interval);
     moveImages();
+    toggleButton.innerHTML = "stop";
+    toggleButton.classList.remove("off");
+    toggleButton.classList.add("on");
+});
+
+toggleButton.addEventListener("click", () => {
+    if (animation === null){
+        animation = setInterval(() => {
+            addMovingImage();
+        }, interval);
+        toggleButton.innerHTML = "stop";
+        toggleButton.classList.remove("off");
+        toggleButton.classList.add("on");
+    }
+    else{
+        clearInterval(animation);
+        animation = null;
+        toggleButton.innerHTML = "start";
+        toggleButton.classList.remove("on");
+        toggleButton.classList.add("off");
+    }
 });
