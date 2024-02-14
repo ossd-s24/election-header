@@ -10,6 +10,12 @@ This repository has the complete, installable web extension.
 
 # Installation
 
+Clone the repository to your local machine. 
+
+```
+git clone https://github.com/ossd-s24/election-header
+```
+
 Open Firefox and load the about:debugging page. Click [Load Temporary Add-on](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/) and select the manifest.json file within the folder of the extension.
 
 # Support for other browsers
