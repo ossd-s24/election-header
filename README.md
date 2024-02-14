@@ -2,9 +2,9 @@
 
 https://github.com/ossd-s24/election-header
 
-This extension is one way to show your excitement for the upcoming Presidential Election. This browser extension is a program installed inside a web browser that modifies the behavior of the browser or web pages loaded by the browser.
+This Firefox browser extension is a great way to show your excitement for the upcoming Presidential Election
 
-More specifically this extension keeps the 2024 presidential candidates floating from left to right on the American flag on the top right corner of your screen. 
+This extension keeps the 2024 presidential candidates floating from left to right on the American flag on the top right corner of your screen. 
 
 This repository has the complete, installable web extension.
 
@@ -14,7 +14,7 @@ Open Firefox and load the about:debugging page. Click [Load Temporary Add-on](ht
 
 # Support for other browsers
 
-These examples are tested in Firefox. They may work in other browsers, if the browser supports the APIs used.
+This extension has been developed for Firefox browser. They may work in other browsers, if the browser supports the APIs used.
 
 # Problems?
 
