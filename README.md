@@ -10,7 +10,7 @@ This repository has the complete, installable web extension.
 
 # Installation
 
-Open Firefox and load the abour:debugging page. Click [Load Temporary Add-on](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/) and select the manifest.json file within the folder of the extension.
+Open Firefox and load the about:debugging page. Click [Load Temporary Add-on](https://extensionworkshop.com/documentation/develop/temporary-installation-in-firefox/) and select the manifest.json file within the folder of the extension.
 
 # Support for other browsers
 
